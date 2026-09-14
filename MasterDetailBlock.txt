@@ -1,0 +1,22 @@
+-- Create master block "DEPT" and detail block "EMP" -- 
+USING ( ORACLE FORMS ) 
+
+1. Create CANVAS and Name it as CAN_DEPT_EMP 
+
+2. Create DATA BLOCK --> ( DEPT ) and Put in CAN_DEPT_EMP 
+
+3. Create DATA BLOCK --> ( EMP ) and Put in CAN_DEPT_EMP  
+
+4. Select --> Remove Auto Join , THEN Click on Create Relationship 
+
+-- Master Block: DEPT 
+
+-- Master Item: DEPTNO
+
+-- Detail Item: DEPTNO 
+
+Join Displayed: EMP.DEPTNO = DEPT.DEPTNO 
+
+5. click SAVE --> MariyaMasterDetailForm.fmb 
+
+6. COMPILE --> MariyaMasterDetailForm.fmx 
