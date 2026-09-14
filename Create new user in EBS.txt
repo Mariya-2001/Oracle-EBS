@@ -1,0 +1,5 @@
+Steps to create a user in EBS:
+1. Login to EBS with the default user
+2. click on System Administrator --> Security --> User --> Define 
+3. Username : MARIYA , Password : ... 
+4. Click Save. 
