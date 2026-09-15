@@ -1,0 +1,30 @@
+-- Create report and register it in EBS with parameters -- 
+
+Make a Report:
+1. Open Report Builder 
+2. Double Click on report 
+3. Select Wizard --> OK --> next 
+4. Click Create Both Web and Paper Layout --> next 
+5. Give a title:  , Choose tablular
+6. Sql query  --> next
+7. Write: SELECT * FROM EMP; --> NETX --> OK 
+8. CLICK ALL FIELDS --> MOVE TO THE RIGHT 
+8. SELECT COUNT(DEPTNO) , SUM(SAL) --> NEXT --> FINISH
+9. Save the Report as .rdf
+10. Move the .rdf to EBS using WINScp
+
+REGISTER to EBS 
+1. application developer --> Concurrent --> executable --> WRITE THE REQUEIERED DETAILS 
+
+2. concurrent program --> write the requiered details --> click parameters 
+ 
+4. CLICK SWITCH RESPONSIBILITY --> ADMINISTRATOR RESPONSIBILITY --> 
+REQUEST GROUP --> VIEW --> QUERY BY EXAMPLE --> ENTER 
+WRITTE NAME% --> VIEW --> QUERY BY EXAMPLE --> RUN
+ADD NEW PROGRAM --> WRITE THE REPORT NAME --> SAVE  
+
+5. SWITCH RESPONSIBILITY --> MARIYA_RESP --> VIEW --> REQUEST --> SUBMIT NEW REQUEST
+--> CLICK LOV AND SELECT THE REQUIERED PROGRAM --> SUBMIT --> CLICK FIND 
+--> VIEW OUTPUT 
+
+
