@@ -1,0 +1,45 @@
+-- Factorial Calculation with Exception Handling -- 
+
+Write a PL/SQL program that accepts a input number and returns its factorial as output.
+For example, given an input of 5, the program should return 120 (5×4×3×2×1) with handling all the exceptions.
+
+Input 
+Factorial of 5 = 5*4*3*2*1 = 120
+
+
+SQL> CREATE OR REPLACE PROCEDURE MARIYA_PR_FACT(N NUMBER) IS
+  2  S NUMBER := N;  
+  3  RES NUMBER := N;
+  4  FACT_1  EXCEPTION;
+  5  FACT_0 EXCEPTION; 
+  6  BEGIN 
+  7  IF S = 0 OR S = 1 THEN
+  8  RAISE FACT_1;
+  9  ELSIF S < 0 THEN
+ 10  RAISE FACT_0; 
+ 11  END IF;
+ 12  LOOP 
+ 13  S := S - 1;
+ 14  RES  := RES * S;    
+ 15  EXIT WHEN S = 2;
+ 16  END LOOP; 
+ 17  DBMS_OUTPUT.PUT_LINE(' FACTORIAL = '||RES);
+ 18  EXCEPTION  
+ 19  WHEN FACT_1 THEN
+ 20  DBMS_OUTPUT.PUT_LINE(' FACTORIAL = 1 ');
+ 21  WHEN FACT_0 THEN 
+ 22  DBMS_OUTPUT.PUT_LINE(' INPUT N CANNOT BE LESS THAN 0 ');
+ 23  WHEN NO_DATA_FOUND THEN 
+ 24  DBMS_OUTPUT.PUT_LINE(' INPUT A NUMBER TO COMPUTE FACTORIAL');  
+ 25  WHEN OTHERS THEN
+ 26  DBMS_OUTPUT.PUT_LINE(' CHECK YOUR PROGRAM !!! ');
+ 27  END;
+ 28  /  
+
+Procedure created.
+
+SQL> SET SERVEROUTPUT ON;
+SQL> EXEC MARIYA_PR_FACT(5);
+FACTORIAL = 120
+
+PL/SQL procedure successfully completed.
