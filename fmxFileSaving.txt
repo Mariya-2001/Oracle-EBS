@@ -1,0 +1,10 @@
+-- Place .fmx file in EBS --
+
+1. OPEN WINScp
+2. LOGIN USING THE CREDENTIAL
+3. FROM THE RIGHT HAND SIDE AS AN EBS SERVER, NAVIGATE TO THE:
+
+    /u01/install/VISION/fs1/EBSapps/appl/fnd/12.0.0/forms/US 
+4. PLACE THESE TWO .fmx FILES TO THIS PATH FROM THE LOCAL DESK
+	- MariyaMasterDetailForm.fmx
+	- MariyaEmp.fmx
