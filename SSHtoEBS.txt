@@ -1,0 +1,46 @@
+-- SSH to EBS Machine --
+
+1. OPEN THE SERVER 
+2. OPEN WICScp 
+3. LOGIN USING THE CREDENTIALS (Host name , Username and password)
+4. A WINDOW WITH TWO PARTS WILL SHOW , THE LEFT IS THE LOCAL MACHINE AND THE RIGHT IS THE EBS MACHINE
+
+--------------------------------------------------------------------------------------------------------------
+|                                                 |                                                          |
+|                                                 |                                                          |
+|                                                 |                                                          |
+|                                                 |                                                          |
+|                                                 |                                                          |
+|                                                 |                                                          |
+|                                                 |                                                          |
+|                                                 |                                                          |
+|                                                 |                                                          |
+|          LOCAL MACHINE                          |                   EBS MACHINE                            |
+|                                                 |                                                          |
+|                                                 |                                                          |
+|                                                 |                                                          |
+|                                                 |                                                          |
+|                                                 |                                                          |
+|                                                 |                                                          |
+|                                                 |                                                          |
+|                                                 |                                                          |
+|                                                 |                                                          |
+|                                                 |                                                          |
+|                                                 |                                                          |
+|                                                 |                                                          |
+--------------------------------------------------------------------------------------------------------------														
+														
+														
+														
+														
+														
+															
+														
+															
+																
+																
+															
+																	
+																
+																
+																
