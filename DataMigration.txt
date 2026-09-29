@@ -1,0 +1,50 @@
+-- Data migration implementation -- 
+
+1. LOCATE TO MY FOLDER
+2. CREATE NEW FOLDER AND NAME II AS (DATA MIGRATION)
+3. CREATE NEW TEXT FILE AND WRITE THE FOLLOWING :
+	LOAD DATA INFILE '/u01/install/VISION/fs1/EBSapps/appl/fnd/12.0.0/reports/US/MARIYADATA.dat'
+	INTO TABLE MARIYA_TEST
+	FIELDS SEPARATED BY ','
+	OPTIONALLY ENCLOSED BY '"'
+	(ID,NAME,COURSE)
+4. CLICK SAVE AS , NAME IT AS MARIYACONTROL.ctl , AND CHOOSE ALL FILES , SAVE
+5. CREATE NEW NOTEPADE FILE AND WRITE THE FOLLOWING:
+	1,'MARIYA','ORACLE'
+	2,'NABHAN','C++'
+	3,'SAIF','CYBERSECURITY'
+	4,'SALIM','JAVA'
+	5,'SARA', 'ORACLE'
+6. SAVE AS , NAME IT AS MARIYADATA.dat , AND CHOOSE ALL FILES , SAVE 
+7. OPEN SQL PLUS AND CREATE A TABLE:
+--------------------------------------
+SQL> CREATE TABLE MARIYA_TEST
+  2  (ID NUMBER,
+  3  NAME CHAR(50),
+  4  COURSE VARCHAR2(100)
+  5  );
+
+Table created.
+--------------------------------------
+8. OPEN COMMAND PROMPT 
+9. WRITE sqlldr (INVOKE SQL LOADER)
+10. MOVE THE TWO CREATED FILES TO EBS (/u01/install/VISION/fs1/EBSapps/appl/fnd/12.0.0/reports/US/)
+11. OPEN PUTTY AND RUN THE FOLLOWING:
+	[root@ebs US]# export ORACLE_SID=EBSDB
+	[root@ebs US]# echo $ORACLE_SID
+	EBSDB
+	[root@ebs US]# export ORACLE_HOME=/u01/install/VISION/11.2.0
+	[root@ebs US]# export PATH=$ORACLE_HOME/bin:$PATH
+	[root@ebs US]# export LD_LIBRARY_PATH=$ORACLE_HOME/lib:$LD_LIBRARY_PATH
+	[root@ebs US]# which sqlldr
+	/u01/install/VISION/11.2.0/bin/sqlldr
+	[root@ebs US]# sqlldr
+	[root@ebs US]# sqlldr userid=apps/apps control=MARIYACONTROL.ctl
+	SQL*Loader: Release 11.2.0.4.0 - Production on Sat Sep 26 08:48:21 2026
+
+	Copyright (c) 1982, 2011, Oracle and/or its affiliates.  All rights reserved.
+
+	Commit point reached - logical record count 4
+	Commit point reached - logical record count 5
+
+11. RUN THE SQL LOADER : sqlldr userid=apps/apps@EBSDB control='/u01/install/VISION/fs1/EBSapps/appl/fnd/12.0.0/reports/US/MARIYACONTROL.ctl'
