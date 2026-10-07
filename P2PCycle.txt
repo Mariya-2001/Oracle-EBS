@@ -1,0 +1,164 @@
+-- P2P CYCLE IMPLEMENTATION --
+1. LOGIN TO EBS
+2. ASSIGN RESPONSIBILITIES: GO TO SYSTEM ADMINISTRATOR --> SECURITY --> USER --> DEFINE
+3. ADD THESE RESPONSIBILITIES
+  -INVENTORY, VISION OPERATIONS(USA)
+  -PURCHASING, VISION OPERATIONS(USA)
+  -PAYABLES, VISION OPERATIONS(USA)
+  -GENERAL LEDGER, VISION OPERATIONS(USA)
+
+4. LOGIN TO EBS
+5. LOCATE TO SYSTEM ADMINISTRATOR --> SECURITY --> USER --> DEFINE
+6. VIEW --> QUERY BY EXAMPLE --> RUN 
+7. WRITE MARIYA% --> VIEW --> QUERY BY EXAMPLE --> ENTER 
+8. IN THE RIGHT SIDE WHERE YOU SEE PERSON... WRITE:
+	PERSON: STOCK% --> HIT TAB 
+	CHOOSE MS. PAT --> DOUBLE CLICK --> SAVE 
+
+
+9. NAVIGATE TO INVENTORY --> ITEMS --> MASTER ITEMS 
+10. IN ORGANIZATION PAGE , CLICK V IN THE KEYBOARD AND CHOOSE V1.  (MASTER ITEM (V1)) WILL APPEARE
+    ITEM: XX_MARY_LAPTOP --> HIT TAB
+    DESCRIPTION: LAPTOP FOR CODELINE - MUSCAT
+11. NAVIGATE TO TOOLS --> COPY FROM --> WRITE FINI --> HIT TAB --> APPLY --> DONE  
+12. GO TO PURCHASING TAB --> LIST PRICE:100 --> SAVE 
+13. GO TO SQL DEVELOPER AND QUERY THE FOLLOWING:
+    DESC mtl_system_items_b
+    SELECT * FROM mtl_system_items_b WHERE segment1 = 'XX_MARY_LAPTOP'; 
+
+-- ADD ITEMS -- 
+14. INVENTORY --> GO TO TRANSACTIONS --> MISCELLANEOUS TRANSACTION.
+15. WRITE IN TYPE: M AND HIT TAB --> CHOOSE Miscellaneous Receipt --> CLICK TRANSACTION LINES 
+    ITEM XX_MARY% AND HIT TAB .
+    SUBINVENTORY: Stores
+    UOM: Ea
+    SCROLL TO THE RIGTH 
+    QUANTITY: 1000
+    ACCOUNT --> CLICK EMP.EXP --> OK
+16. CLICK SAVE
+  
+-- ON-HAND AVAILABILITY --
+17. CLICK ON-HAND QUANTITY --> ON-HAND QUANTITY 
+18. WRITE ITEM/REVISION : XX_MARY% --> HIT TAB 
+    FIND --> AVAILABILITY
+19. GO TO SQL DEVELOPER AND QUERY THE FOLLOWING:
+    SELECT * FROM mtl_system_items_b WHERE segment1 = 'XX_MARY_LAPTOP';
+
+-- INVENTORY COMPLETED -- 
+
+--------------------------------------------
+
+-- PURCHASE VISION OPERATIONS --
+
+1. SWITCH RESPONSIBILITY TO PURCHASING, VISION OPERATIONS(UAS) --> REQUISITIONS --> REQUISITIONS
+2. OPERATING UNIT: VISION OPERATIONS 
+3. CLICK IN THE NUM FIELD IN THE LINES HEADER --> WRITE IN ITEM: XX_MARY% --> HIT TAB
+   QUANTITY: 25 
+   Need by Date:(Next Day) 
+4. DOWN CHOOSE: Location: Auckland
+                SUBINVENTORY: Stores
+	        SOURCE: Supplies
+	        Supplier: write abbott and click find
+	        Site: CORP HQ
+	        CLICK SAVE
+5. A NUMBER WILL BE GENERATED , SAVE IT : 16089 
+6. GO TO SQL DEVELOPER AND QUERY THE FOLLOWING:
+   SELECT * FROM po_requisition_headers_all where segment1='16089';
+   SELECT * FROM po_requisition_lines_all where requisition_header_id = '16089';
+
+6. CLICK IN DISTRIBUTIONS --> CHECK FIELDS --> CLOSE -->  APPROVE 
+7. CLOSE ALL
+8. NAVIGATE TO PURCHASING, VISION OPERATIONS --> RFQ'S AND QUOTATION --> RFQ'S 
+   Type: Standard RFQ 
+   Bill To: Auckland 
+   Close Date: (NEXT DAY'S DATA) 
+   Item: XX_MARY_% HIT TAB
+   CLIKC Price Breaks (Button) 
+   QUANTITY: 2
+   Org: V1 
+   Ship to: Auckland 
+   SAVE --> CLOSE
+   CLICK Suppliers (Button) 
+   Name: Abbott laboratories
+9. SAVE A
+10. A NUMBER WILL BE GENERATED , SAVE IT :363
+11. GO TO SQL DEVELOPER AND QUERY THE FOLLOWING:
+    SELECT * FROM po_headers_all WHERE segment1 = '363'; 
+    SELECT * from po_headers_all WHERE segment1 = '363' and type_lookup_code = 'RFQ';
+
+12. Creating Quotation from RFQ window
+    FROM THE RFQ'S PAGE --> TOOLS --> COPY DOCUMENTS
+    Action: Entire RFQ 
+    Type: Standard Quotation 
+    Supplier: Abbott laboratories 
+    Site: CORP HQ 
+    CLICK OK 
+    QUOTATION NUMBER: 555  
+13. GO TO SQL DEVELOPER AND QUERY THE FOLLOWING:
+    SELECT * FROM po_headers_all WHERE segment1 = '555' and type_lookup_code = 'QUOTATION';
+
+-- Purchase Orders -- 
+14. Purchase Orders > Purchase Order
+    Bill to: Auckland 
+    Click on Num:  
+    Item: XX_MARY_LAPTOP --> HIT TAB
+    Quantity: 25 
+    Need By Date: (NEXT DAY'S DATA) 
+    Shipments (Button) 
+    Org: V1 
+    Ship To: Auckland 
+    Quantity: 25 
+    Distributions (Button) --> CLICK SAVE 
+(4 Records applied & Saved)
+15. A NUMBER WILL BE GENERATED , SAVE IT
+    PURCHASE ORDER: 6736 
+    CLICK APPROVE
+16. GO TO Purchase Order > Purchase order Summary  
+    Number: 6736 CLICK FIND 
+17. GO TO SQL DEVELOPER AND QUERY THE FOLLOWING:
+    SELECT * FROM po_headers_all WHERE segment1= '6736';
+
+18. GO TO Receiving --> Receipts
+    Organization : V1 Vision operations 
+    Purchase Order No: 6736 HIT TAB 
+    Supplier: Abbott Laboratories	<auto display> 
+    CLICK FIND
+    Comments: Receipt for PO 6736 - Laptop
+    DATE: BEFORE TODAY'S DATE --> CLICK SAVE  
+19. A NUMBER WILL BE GENERATED , SAVE IT
+    Receipt number: 9108
+20. GO TO SQL DEVELOPER AND QUERY THE FOLLOWING:
+    SELECT * FROM rcv_shipment_headers order by 1 desc; 
+    SELECT * FROM rcv_shipment_headers WHERE receipt_num = '9108';  
+
+
+
+-- Payables, Vision Operations (USA)  --
+21. SWICH RESPONSIBILITY TO Payables, Vision Operations (USA) , AND GO TO --> INVOICES --> ENTRY --> INVOICES 
+22. WRITE PO NUMBER: 6736 HIT TAB
+    INVOICE DATA: BEFORE TODAY'S DATA
+    INVOICE NUM: MARIYAINV001
+    IN LINES TAB --> PAYMENT METHOD: check --> AMOUNT 200 --> PO LINE (CLICK LOV : IT WILL DISPLAY 1)
+    PO SHIPMENT (CLICK LOV: IT WILL DISPLAY 1)
+23. CLICK DISTRIBUTIONS 
+24. CLICK ACTIONS 1 --> CHECKBOX VALIDATE --> OK , (STATUS : NEEDS VALIDATION)
+25. CLICK HOLDS TAB --> RELEASE 1 --> SELECT DEFAULT RELEASE NAME --> OK 
+26. GO BACK TO GENERAL, STATUS SHOULD CHANGE TO :VALIDATED
+27. GO TO ACTIONS 1 --> CREATE ACCOUNTING --> FINAL POST --> OK (ACCOUNT CREATING FOR THIS SUCCESSFULL TRANSACTIONS!)
+28. GO TO ACTIONS 1 --> CLICK PAY IN FULL --> OK --> IT WILL TOOK YOU TO PAYMANTS 
+    Type: Manual
+    Trading Partner: Abbott Laboratories, Inc.
+    Payment Date: 29-SEP-2026
+    Bank Account: BofA-204
+    Payment Process Profile: Check - USD
+    CLICK ACTIONS --> Create accounting --> final post --> CLICK OK
+29. CLICK PAYMENT OVERVIEW 
+30. SELECT * FROM GL_JE_HEADERS WHERE NAME LIKE '%26 Purchase Invoices USD' ORDER BY 1 DESC;
+    copy Name: SEP-26 Purchase Invoices USD
+
+
+31. SWITCH RESPONSIBILITY TO GENERAL LEDGER, VISION OPERATIONS(USA) --> JOURNAL --> ENTER
+    Journal: SEP-26 Purchase Invoices USD
+    <FIND>
+    
+
