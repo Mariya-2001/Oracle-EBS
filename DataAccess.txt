@@ -1,0 +1,36 @@
+-- PROVIDE DATA ACCESS TO THE USER --
+
+
+1. Open Oracle Fusion Cloud
+2. Navigate to Tools --> Security Console 
+3. Go to Users --> click Add User Account 
+4. Add user details ans assign the following roles:
+	- IT Security Manager
+	- Employee
+	- Accounts Payables Manager
+5. Click Save and Close
+6. Navigate to Tools --> Reports and Analytics --> Browse Catalog
+7. Click Create --> Analysis
+8. choose Subject Area :Payables Transactions Real Time
+9. Expand Invoices and drag the following columns
+       (▪Invoice Currency
+	▪Invoice Currency Name
+	▪Invoice Amount
+	▪Invoice Amount Paid)
+10. Go to RESULTS tab -->  ▪No DATA ? User doesn’t have DATA ACCESS!!
+
+11. Go to Setup and Maintenance --> Tasks
+12. Data access for Users<Search>
+13. Username: > With Data Access<Search>
+14. Click + CREATE
+   Username:     Role: Accounts Payables   Context: BU    Value: US1 BU
+15. Click SAVE & CLOSE
+16. Go to Tools --> Reports and Analytics --> Browse Catalog
+17. Click Create --> Analysis
+18. choose Subject Area :Payables Transactions Real Time
+19. Expand Invoices and drag the following columns
+       (▪Invoice Currency
+	▪Invoice Currency Name
+	▪Invoice Amount
+	▪Invoice Amount Paid)
+20. The data of the Columns will be shown 
