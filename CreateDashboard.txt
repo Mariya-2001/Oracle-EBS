@@ -1,0 +1,16 @@
+-- Create a Dashboard --
+
+1. Open Fusion website 
+2. Go to Tools --> Open Reports and Analytics
+3. Create an analysis --> Select Subject Area --> Design the report
+4. Save the analysis
+5. Create the dashboard
+6. Add reports to the dashboard --> Arrange and customize
+7. Save and test
+CREATE NEW DASHBOARD
+➢DB_ACA
+oSave it under your Folder
+▪Page opens by Default
+•Move  Analysis, Reports  
+•Save 
+•Run
