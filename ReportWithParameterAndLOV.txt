@@ -1,0 +1,21 @@
+-- Create report with parameter and LOV --
+
+1. Log in to Oracle Fusion Cloud environment.
+2. Navigate Tools → Reports and Analytics.
+3. Open Browse Catalog to access the BI Publisher catalog. 
+4. In the BI Publisher catalog, click New → Data Model.
+5. Enter a name for the data model, such as Employee_Report_DM.
+6. In the Data Model editor, find Data Sets and click Create New Data Set.
+7. Select SQL Query as the data set type.
+8. Enter a name, such as Employee_Data.
+9. Select an available data source.
+10. Enter the report SQL query.
+11. In the Data Model editor, select List of Values.
+12. Click Create New List of Values.
+13. Enter the name DEPARTMENT_LOV.
+14. Select the type SQL Query.
+15. Select the appropriate data source.
+16. Enter a query that returns the department display name and department ID.
+17. Select Parameters in the Data Model editor.
+18. Click Create New Parameter.
+19. Enter the details.
